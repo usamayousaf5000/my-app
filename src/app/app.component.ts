@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import {UsersService} from './service/users.service'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,5 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'my-app';
-  xyz= 1;
+  users:any;
+  constructor(private userData:UsersService)
+  {
+    userData.users().subscribe((data)=>{
+      console.log('data',data);
+      this.users = data;
+    })
+  }
 }
